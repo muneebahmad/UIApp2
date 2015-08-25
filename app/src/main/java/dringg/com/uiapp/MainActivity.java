@@ -1,19 +1,20 @@
 package dringg.com.uiapp;
 
+import android.os.Bundle;
 import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import pk.muneebahmad.ui.MyPagerAdapter;
 import pk.muneebahmad.ui.UIManager;
+import pk.muneebahmad.util.Log;
 
 /**
- *
+ * @author muneebahmad
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +22,13 @@ public class MainActivity extends AppCompatActivity {
     private MyPagerAdapter pagerAdapter;
     private PagerTitleStrip pagerTitleStrip;
     private ActionBar actionBar;
+
+    private String[] posNames = {
+            "CALL HISTORY",
+            "DIALER",
+            "FAVORITES",
+            "CONTACTS"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +51,44 @@ public class MainActivity extends AppCompatActivity {
         pagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
         pagerAdapter.setCtx(getApplication());
         viewPager.setAdapter(pagerAdapter);
+
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.log(Log.LOG_ERROR, "PAGE SELECTED >>> " + position + " >>> " + posNames[position]);
+                switch (position) {
+                    case 0:
+                        UIManager.getsInstance().setActivatedView(UIManager.ActivatedView.VIEW_CALL_LOG);
+                        break;
+                    case 1:
+                        UIManager.getsInstance().setActivatedView(UIManager.ActivatedView.VIEW_DIALER);
+                        break;
+                    case 2:
+                        UIManager.getsInstance().setActivatedView(UIManager.ActivatedView.VIEW_FAVORITES);
+                        break;
+                    case 3:
+                        UIManager.getsInstance().setActivatedView(UIManager.ActivatedView.VIEW_CONTACTS);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         viewPager.setCurrentItem(1);
     }
 

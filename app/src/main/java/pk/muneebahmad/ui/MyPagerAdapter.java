@@ -12,7 +12,7 @@ import android.text.style.ImageSpan;
 import dringg.com.uiapp.R;
 
 /**
- * Created by ay on 8/25/2015.
+ * Created by muneebahmad on 8/25/2015.
  */
 public class MyPagerAdapter extends FragmentPagerAdapter {
 

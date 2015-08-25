@@ -3,7 +3,7 @@ package pk.muneebahmad.ui;
 import pk.muneebahmad.util.Log;
 
 /**
- * Created by ay on 8/25/2015.
+ * Created by muneebahmad on 8/25/2015.
  */
 public class UIManager {
 
@@ -11,13 +11,14 @@ public class UIManager {
 
     public static enum ActivatedView {
         VIEW_SMS,
-        VIEW_CALL,
+        VIEW_CALL_LOG,
         VIEW_MAIN,
         VIEW_SPLASH,
         VIEW_DIALER,
         VIEW_CONTACTS,
         VIEW_SETTINGS,
         VIEW_SEARCH,
+        VIEW_FAVORITES,
         VIEW_NULL
     }
 
