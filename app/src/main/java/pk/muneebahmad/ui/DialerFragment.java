@@ -13,6 +13,7 @@ import dringg.com.uiapp.R;
  * Created by muneebahmad on 8/25/2015.
  */
 public class DialerFragment extends Fragment {
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

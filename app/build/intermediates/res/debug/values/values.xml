@@ -231,6 +231,11 @@
     <style name="Animation.AppCompat.DropDownUp" parent="Base.Animation.AppCompat.DropDownUp"/>
     <!-- From: file:/C:/Users/ay/AndroidStudioProjects/UIApp2/app/src/main/res/values/styles.xml -->
     <eat-comment/>
+    <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#333333</item>
+        <item name="android:textColorPrimary">#222222</item>
+        <item name="android:background">#ffffff</item>
+    </style>
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/ab_bg</item>

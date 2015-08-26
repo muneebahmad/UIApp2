@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import pk.muneebahmad.ui.UIManager;
+import pk.muneebahmad.util.Log;
 
 /**
  * Created by ay on 8/21/2015.
@@ -25,7 +26,7 @@ public class SplashActivity extends AppCompatActivity {
                         WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.splash_activity);
-        UIManager.getsInstance().setActivatedView(UIManager.ActivatedView.VIEW_SPLASH);
+        UIManager.getInstance().setActivatedView(UIManager.ActivatedView.VIEW_SPLASH);
 
         this.tv = (TextView) findViewById(R.id.tv_loading);
         this.tv.setText(txt);
@@ -55,7 +56,7 @@ public class SplashActivity extends AppCompatActivity {
                         sleep(600);
                         startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     } catch (InterruptedException e) {
-
+                        Log.log(Log.LOG_ERROR, "INTERRUPTED EXCEPTION IN LOADING THREAD >> " + e.toString());
                     } finally {
                         finish();
                     }
@@ -65,6 +66,8 @@ public class SplashActivity extends AppCompatActivity {
         }
 
     @Override
-    public void onBackPressed() {}
+    public void onBackPressed() {
+
+    }
 
 }/** end class. */

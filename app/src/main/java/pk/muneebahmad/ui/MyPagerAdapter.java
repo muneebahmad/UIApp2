@@ -81,6 +81,8 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
                 ImageSpan imageSpan4 = new ImageSpan(img4, ImageSpan.ALIGN_BOTTOM);
                 val.setSpan(imageSpan4, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 break;
+            default:
+                break;
         }
         return val;
     }

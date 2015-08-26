@@ -1,5 +1,6 @@
 package dringg.com.uiapp;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
@@ -9,14 +10,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import pk.muneebahmad.ui.MyOneButtonDialogListener;
 import pk.muneebahmad.ui.MyPagerAdapter;
+import pk.muneebahmad.ui.MyTwoButtDialogListener;
 import pk.muneebahmad.ui.UIManager;
 import pk.muneebahmad.util.Log;
 
 /**
  * @author muneebahmad
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MyOneButtonDialogListener {
 
     private ViewPager viewPager;
     private MyPagerAdapter pagerAdapter;
@@ -34,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        UIManager.getsInstance().setActivatedView(UIManager.ActivatedView.VIEW_MAIN);
+        UIManager.getInstance().setActivatedView(UIManager.ActivatedView.VIEW_MAIN);
+        UIManager.getInstance().addOneButtonDialogClickListner(this);
         setToolbar();
         setViewPager();
     }
@@ -63,16 +67,16 @@ public class MainActivity extends AppCompatActivity {
                 Log.log(Log.LOG_ERROR, "PAGE SELECTED >>> " + position + " >>> " + posNames[position]);
                 switch (position) {
                     case 0:
-                        UIManager.getsInstance().setActivatedView(UIManager.ActivatedView.VIEW_CALL_LOG);
+                        UIManager.getInstance().setActivatedView(UIManager.ActivatedView.VIEW_CALL_LOG);
                         break;
                     case 1:
-                        UIManager.getsInstance().setActivatedView(UIManager.ActivatedView.VIEW_DIALER);
+                        UIManager.getInstance().setActivatedView(UIManager.ActivatedView.VIEW_DIALER);
                         break;
                     case 2:
-                        UIManager.getsInstance().setActivatedView(UIManager.ActivatedView.VIEW_FAVORITES);
+                        UIManager.getInstance().setActivatedView(UIManager.ActivatedView.VIEW_FAVORITES);
                         break;
                     case 3:
-                        UIManager.getsInstance().setActivatedView(UIManager.ActivatedView.VIEW_CONTACTS);
+                        UIManager.getInstance().setActivatedView(UIManager.ActivatedView.VIEW_CONTACTS);
                         break;
                     default:
                         break;
@@ -114,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.action_disconnect) {
 
         } else if (id == R.id.action_quit) {
-            finish();
+            UIManager.getInstance().makeOneButtonDialog(this, "Dialog", "This is a material dialog", "OK");
         } else if (id == R.id.action_share) {
 
         } else if (id == R.id.action_search) {
@@ -122,5 +126,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onButtClicked(DialogInterface dialog, int which) {
+        dialog.dismiss();
     }
 }/** end class. */
