@@ -2,10 +2,10 @@ package pk.muneebahmad.ui;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,11 +15,19 @@ import pk.muneebahmad.util.Log;
 
 
 /**
- * Created by ay on 8/26/2015.
+ * Created by muneebahmad on 8/26/2015.
  */
 public class CallHistoryListLayout extends LinearLayout implements View.OnClickListener {
 
     private LinearLayout icPanel;
+
+    public static enum AttendTypes {
+        CALL_MISSED,
+        CALL_INCOMING,
+        CALL_OUTGOING
+    }
+
+    private AttendTypes attendTypes = AttendTypes.CALL_MISSED;
 
     /**
      *
@@ -27,11 +35,12 @@ public class CallHistoryListLayout extends LinearLayout implements View.OnClickL
      * @param name
      * @param phoneNum
      * @param time
+     * @param attendTypes
      */
-    public CallHistoryListLayout(Context context, String name, String phoneNum, String time) {
+    public CallHistoryListLayout(Context context, String name, String phoneNum, String time, AttendTypes attendTypes) {
         super(context);
         setOnClickListener(this);
-        make(context, name, phoneNum, time);
+        make(context, name, phoneNum, time, attendTypes);
     }
 
     /**
@@ -40,8 +49,9 @@ public class CallHistoryListLayout extends LinearLayout implements View.OnClickL
      * @param name
      * @param phoneNum
      * @param time
+     * @param attendTypes
      */
-    public void make(Context context, String name, String phoneNum, String time) {
+    public void make(Context context, String name, String phoneNum, String time, AttendTypes attendTypes) {
         this.setOrientation(LinearLayout.HORIZONTAL);
         this.setBackgroundResource(R.drawable.tv_bg);
         this.setWeightSum(4);
@@ -79,14 +89,41 @@ public class CallHistoryListLayout extends LinearLayout implements View.OnClickL
         icPanel.setBackgroundResource(R.drawable.tv_bg2);
         icPanel.setOnClickListener(this);
 
+        LinearLayout.LayoutParams imgParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+
         TextView nView = new TextView(context);
         nView.setTextColor(Color.parseColor("#222222"));
+        if (time.equalsIgnoreCase("yesterday")) {
+            nView.setTextColor(Color.RED);
+        } else if (time.equalsIgnoreCase("today")) {
+            nView.setTextColor(Color.parseColor("#1e90ff"));
+        }
         nView.setText(time);
         nView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        icPanel.addView(getCallTypeImage(context, attendTypes));
         icPanel.addView(nView);
 
         addView(vert);
         addView(icPanel, icParams);
+    }
+
+    /**
+     *
+     * @param context
+     * @param attendTypes
+     * @return
+     */
+    private ImageView getCallTypeImage(Context context, AttendTypes attendTypes) {
+        ImageView imageView = new ImageView(context);
+        if (attendTypes == AttendTypes.CALL_INCOMING) {
+            imageView.setImageResource(R.drawable.incoming);
+        } else if (attendTypes == AttendTypes.CALL_MISSED) {
+            imageView.setImageResource(R.drawable.missed);
+        } else if (attendTypes == AttendTypes.CALL_OUTGOING) {
+            imageView.setImageResource(R.drawable.outgoing);
+        }
+        return imageView;
     }
 
     @Override

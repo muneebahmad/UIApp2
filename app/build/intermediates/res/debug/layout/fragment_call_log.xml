@@ -5,6 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="10sp"
+        >
+
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/left_tab_bg"
+            android:textColor="#000"
+            android:textOn=" Call "
+            android:textOff=" Call "
+            android:id="@+id/tab_butt_left"
+            />
+
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/right_tab_bg"
+            android:textColor="#000"
+            android:textOn=" SMS  "
+            android:textOff=" SMS  "
+            android:id="@+id/tab_butt_right"
+            />
+
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
