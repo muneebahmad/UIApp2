@@ -1,16 +1,24 @@
 package dringg.com.uiapp;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-import pk.muneebahmad.ui.MyOneButtonDialogListener;
+import java.util.Random;
+
+import pk.muneebahmad.ui.MyAdapter;
 import pk.muneebahmad.ui.MyPagerAdapter;
 import pk.muneebahmad.ui.MyTwoButtDialogListener;
 import pk.muneebahmad.ui.UIManager;
@@ -19,12 +27,14 @@ import pk.muneebahmad.util.Log;
 /**
  * @author muneebahmad
  */
-public class MainActivity extends AppCompatActivity implements MyOneButtonDialogListener {
+public class MainActivity extends AppCompatActivity implements MyTwoButtDialogListener {
 
     private ViewPager viewPager;
     private MyPagerAdapter pagerAdapter;
     private PagerTitleStrip pagerTitleStrip;
     private ActionBar actionBar;
+
+    public static MainActivity activity;
 
     private String[] posNames = {
             "CALL HISTORY",
@@ -33,19 +43,105 @@ public class MainActivity extends AppCompatActivity implements MyOneButtonDialog
             "CONTACTS"
     };
 
+    private String[] titles = {
+            "Profile",
+            "About",
+            "Share",
+            "Contacts",
+            "Favorites",
+            "Settings",
+            "License"
+    };
+
+    private int[] icons = {
+            R.drawable.ic_contacts,
+            R.drawable.ic_about,
+            R.drawable.ic_share,
+            R.drawable.ic_profile,
+            R.drawable.ic_favorites,
+            R.drawable.ic_settings,
+            R.drawable.ic_license
+    };
+
+    private String names[] = {
+            "Abdul Bari",
+            "Mumtaz Lone",
+            "Ahmad Kamal",
+            "Jalal Khan",
+            "Nazim ud Din"
+    };
+
+    private String emal[] = {
+            "abdulbari@gmail.com",
+            "mumtazlone@yahoo.com",
+            "ahmad_kamal@hotmail.com",
+            "jalal_khan@gmail.com",
+            "nazim_123@yahoo.com"
+    };
+
+    private int profile = R.drawable.ic_contacts;
+    private String n = names[0];
+    private String e = emal[0];
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private DrawerLayout drawer;
+    private ActionBarDrawerToggle mDrawerToggle;
+
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        activity = MainActivity.this;
+        //--------- DEBUG, REMOVE LATER -------------------
+        setEmailAndName();
+        //-=-----------------------------------------------
         UIManager.getInstance().setActivatedView(UIManager.ActivatedView.VIEW_MAIN);
-        UIManager.getInstance().addOneButtonDialogClickListner(this);
+        UIManager.getInstance().addTwoButtonDialogClickListener(this);
         setToolbar();
+        setDrawer();
         setViewPager();
     }
 
     private void setToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
+    }
+
+    private void setDrawer() {
+        this.mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        this.mRecyclerView.setHasFixedSize(true);
+        this.mAdapter = new MyAdapter(titles, icons, n, e, profile);
+        this.mRecyclerView.setAdapter(this.mAdapter);
+        this.mLayoutManager = new LinearLayoutManager(this);
+        this.mRecyclerView.setLayoutManager(this.mLayoutManager);
+
+        this.drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        mDrawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.openDrawer, R.string.closeDrawer) {
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                // code here will execute once the drawer is opened( As I dont want anything happened whe drawer is
+                // open I am not going to put anything here)
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                // Code here will execute once drawer is closed
+            }
+
+
+
+        }; // Drawer Toggle Object Made
+        drawer.setDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
     }
 
     private void setViewPager() {
@@ -90,6 +186,12 @@ public class MainActivity extends AppCompatActivity implements MyOneButtonDialog
         });
     }
 
+    private void setEmailAndName() {
+        int r = new Random().nextInt(5);
+        this.n = names[r];
+        this.e = emal[r];
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -118,7 +220,9 @@ public class MainActivity extends AppCompatActivity implements MyOneButtonDialog
         } else if (id == R.id.action_disconnect) {
 
         } else if (id == R.id.action_quit) {
-            UIManager.getInstance().makeOneButtonDialog(this, "Dialog", "This is a material dialog", "OK");
+            UIManager.getInstance().makeTwoButtonDialog(this, "Exit Dialog",
+                    "Do you really want to Shutdown and quit?",
+                    "Yes", "No");
         } else if (id == R.id.action_share) {
 
         } else if (id == R.id.action_search) {
@@ -128,8 +232,17 @@ public class MainActivity extends AppCompatActivity implements MyOneButtonDialog
         return super.onOptionsItemSelected(item);
     }
 
+    public static Activity getActivity() {
+        return activity;
+    }
+
     @Override
-    public void onButtClicked(DialogInterface dialog, int which) {
+    public void onFirstButtClicked(DialogInterface dialog, int which) {
+        System.exit(0);
+    }
+
+    @Override
+    public void onSecondButtClicked(DialogInterface dialog, int which) {
         dialog.dismiss();
     }
 }/** end class. */

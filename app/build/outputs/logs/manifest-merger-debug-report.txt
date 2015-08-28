@@ -17,6 +17,8 @@ application
 ADDED from AndroidManifest.xml:5:5
 MERGED from com.android.support:appcompat-v7:23.0.0:22:5
 MERGED from com.android.support:support-v4:23.0.0:22:5
+MERGED from de.hdodenhof:circleimageview:1.2.1:9:5
+MERGED from com.android.support:support-v4:23.0.0:22:5
 	android:label
 		ADDED from AndroidManifest.xml:8:9
 	android:allowBackup
@@ -60,6 +62,9 @@ ADDED from AndroidManifest.xml:26:17
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 MERGED from com.android.support:appcompat-v7:23.0.0:20:5
+MERGED from com.android.support:support-v4:23.0.0:20:5
+MERGED from de.hdodenhof:circleimageview:1.2.1:5:5
+MERGED from com.android.support:recyclerview-v7:23.0.0:20:5
 MERGED from com.android.support:support-v4:23.0.0:20:5
 	android:targetSdkVersion
 		INJECTED from AndroidManifest.xml:0:0
