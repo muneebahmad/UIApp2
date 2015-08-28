@@ -102,7 +102,7 @@ public class CallLogFragment extends Fragment implements View.OnClickListener {
             checkForCallType(r);
 
             this.mainLayout.addView(new CallHistoryListLayout(rootView.getContext(), names[z], phNo[z] + "", time,
-                            a),
+                            a, i),
                     params);
         }
     }
@@ -135,7 +135,9 @@ public class CallLogFragment extends Fragment implements View.OnClickListener {
             int r = new Random().nextInt(3);
             int n = new Random().nextInt(11);
             checkForCallType(r);
-            this.mainLayout.addView(new CallHistoryListLayout(rootView.getContext(), names[n], phNums[n] + "", "" + (n + 1), a), params);
+            this.mainLayout.addView(new
+                    CallHistoryListLayout(rootView.getContext(), names[n],
+                    phNums[n] + "", "" + (n + 1), a, i), params);
         }
     }
 

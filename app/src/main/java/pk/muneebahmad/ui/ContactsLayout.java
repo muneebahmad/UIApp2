@@ -13,33 +13,27 @@ import dringg.com.uiapp.R;
 import pk.muneebahmad.util.DP;
 import pk.muneebahmad.util.Log;
 
-
 /**
- * Created by muneebahmad on 8/26/2015.
+ * Created by ay on 8/28/2015.
  */
-public class CallHistoryListLayout extends LinearLayout implements View.OnClickListener {
+public class ContactsLayout extends LinearLayout implements View.OnClickListener {
 
     private LinearLayout icPanel;
     private int i;
 
-    public static enum AttendTypes {
-        CALL_MISSED,
-        CALL_INCOMING,
-        CALL_OUTGOING
-    }
-
     /**
      *
      * @param context
      * @param name
      * @param phoneNum
-     * @param time
+     * @param img
+     * @param i
      */
-    public CallHistoryListLayout(Context context, String name, String phoneNum, String time, AttendTypes attendTypes, int i) {
+    public ContactsLayout(Context context, final String name, final String phoneNum, final ImageView img, int i) {
         super(context);
         this.i = i;
         setOnClickListener(this);
-        make(context, name, phoneNum, time, attendTypes);
+        make(context, name, phoneNum, img);
     }
 
     /**
@@ -47,11 +41,9 @@ public class CallHistoryListLayout extends LinearLayout implements View.OnClickL
      * @param context
      * @param name
      * @param phoneNum
-     * @param time
-     * @param attendTypes
-     * @param msgTypes
+     * @param img
      */
-    public void make(Context context, String name, String phoneNum, String time, AttendTypes attendTypes) {
+    private void make(Context context, final String name, final String phoneNum, final ImageView img) {
         this.setOrientation(LinearLayout.HORIZONTAL);
         this.setBackgroundResource(R.drawable.tv_bg);
         this.setWeightSum(4);
@@ -85,62 +77,43 @@ public class CallHistoryListLayout extends LinearLayout implements View.OnClickL
 
         icPanel = new LinearLayout(context);
         icPanel.setOrientation(LinearLayout.VERTICAL);
-        icPanel.setGravity(Gravity.RIGHT);
-        icPanel.setBackgroundResource(R.drawable.tv_bg2);
+        icPanel.setGravity(Gravity.CENTER);
         icPanel.setOnClickListener(this);
 
         LinearLayout.LayoutParams imgParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        TextView nView = new TextView(context);
-        nView.setTextColor(Color.parseColor("#222222"));
-        if (time.equalsIgnoreCase("yesterday")) {
-            nView.setTextColor(Color.RED);
-        } else if (time.equalsIgnoreCase("today")) {
-            nView.setTextColor(Color.parseColor("#1e90ff"));
+        if (img != null) {
+            icPanel.addView(img, imgParams);
+        } else {
+            icPanel.addView(getContactsImgs(context));
         }
-        nView.setText(time);
-        nView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
 
-        if (UIManager.getInstance().getActivatedView() == UIManager.ActivatedView.VIEW_CALL_LOG ||
-                UIManager.getInstance().getActivatedView() == UIManager.ActivatedView.VIEW_SMS) {
-            icPanel.addView(getCallTypeImage(context, attendTypes));
-        }
-        icPanel.addView(nView);
-
-        addView(vert);
         addView(icPanel, icParams);
+        addView(vert, vertParams);
+
     }
 
     /**
      *
      * @param context
-     * @param attendTypes
      * @return
      */
-    private ImageView getCallTypeImage(Context context, AttendTypes attendTypes) {
+    private ImageView getContactsImgs(Context context) {
         ImageView imageView = new ImageView(context);
-        if (attendTypes == AttendTypes.CALL_INCOMING) {
-            imageView.setImageResource(R.drawable.incoming);
-        } else if (attendTypes == AttendTypes.CALL_MISSED) {
-            imageView.setImageResource(R.drawable.missed);
-        } else if (attendTypes == AttendTypes.CALL_OUTGOING) {
-            imageView.setImageResource(R.drawable.outgoing);
-        }
+        imageView.setImageResource(R.drawable.ic_contacts2);
+        imageView.setScaleX(1.5f);
+        imageView.setScaleY(1.5f);
         return imageView;
     }
 
-
-    /**
-     *
-     * @param v
-     */
     @Override
     public void onClick(View v) {
         if (v == this) {
-            Log.log(Log.LOG_ERROR, "Hello >><< " + (i + 1));
-        } else if (v == this.icPanel) {
-            Log.log(Log.LOG_ERROR, "Hello IC PANEL " + (i + 1));
+            Log.log(Log.LOG_ERROR, "Contacts Clicked..." + (i + 1));
+        } else if (v == icPanel) {
+            Log.log(Log.LOG_ERROR, "Image clicked...." + (i + 1));
         }
     }
+
 }/** end class. */

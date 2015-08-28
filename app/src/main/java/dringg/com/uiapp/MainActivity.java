@@ -2,6 +2,7 @@ package dringg.com.uiapp;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
@@ -91,14 +92,16 @@ public class MainActivity extends AppCompatActivity implements MyTwoButtDialogLi
 
     private Toolbar toolbar;
 
+    private boolean isOpened = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         activity = MainActivity.this;
         //--------- DEBUG, REMOVE LATER -------------------
-        setEmailAndName();
-        //-=-----------------------------------------------
+              setEmailAndName();                   //\\
+        //-------------------------------------------------
         UIManager.getInstance().setActivatedView(UIManager.ActivatedView.VIEW_MAIN);
         UIManager.getInstance().addTwoButtonDialogClickListener(this);
         setToolbar();
@@ -127,14 +130,13 @@ public class MainActivity extends AppCompatActivity implements MyTwoButtDialogLi
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                // code here will execute once the drawer is opened( As I dont want anything happened whe drawer is
-                // open I am not going to put anything here)
+                isOpened = true;
             }
 
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                // Code here will execute once drawer is closed
+                isOpened = false;
             }
 
 
@@ -244,5 +246,14 @@ public class MainActivity extends AppCompatActivity implements MyTwoButtDialogLi
     @Override
     public void onSecondButtClicked(DialogInterface dialog, int which) {
         dialog.dismiss();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isOpened) {
+            this.drawer.closeDrawers();
+        } else {
+            super.onBackPressed();
+        }
     }
 }/** end class. */
