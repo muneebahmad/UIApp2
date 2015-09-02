@@ -181,6 +181,10 @@ public class MainActivity extends AppCompatActivity implements MyTwoButtDialogLi
                 }
             }
 
+            /**
+             *
+             * @param state
+             */
             @Override
             public void onPageScrollStateChanged(int state) {
 
@@ -228,7 +232,6 @@ public class MainActivity extends AppCompatActivity implements MyTwoButtDialogLi
         } else if (id == R.id.action_search) {
 
         }
-
         return super.onOptionsItemSelected(item);
     }
 

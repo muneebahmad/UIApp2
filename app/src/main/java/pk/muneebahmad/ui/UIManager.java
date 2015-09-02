@@ -117,7 +117,8 @@ public class UIManager {
 
     /**
      *
-     * @return Singleton instance.
+     * @return
+     *      Singleton instance.
      */
     public static UIManager getInstance() {
         synchronized (UIManager.class) {

@@ -13,8 +13,8 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.ScaleAnimation;
-import android.view.animation.TranslateAnimation;
 import android.view.animation.Transformation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,7 +25,8 @@ import pk.muneebahmad.util.Log;
 /**
  * Created by muneebahmad on 8/25/2015.
  */
-public class DialerFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener {
+public class DialerFragment extends Fragment implements View.OnClickListener,
+        View.OnLongClickListener {
 
     private TextView tv;
     private ImageButton dialpadButt;
@@ -106,7 +107,7 @@ public class DialerFragment extends Fragment implements View.OnClickListener, Vi
             butts[i].setOnClickListener(this);
         }
     }
-
+    
     private void checkNetwork(Context context) {
         ConnectivityManager connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo kWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
