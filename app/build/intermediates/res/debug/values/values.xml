@@ -15,7 +15,7 @@
     <bool name="abc_config_showMenuShortcutsWhenKeyboardPresent">false</bool>
     <!-- From: file:/C:/Users/ay/AndroidStudioProjects/UIApp2/app/src/main/res/values/color.xml -->
     <eat-comment/>
-    <color name="ab_bg">#1e90ff</color>
+    <color name="ab_bg">#616161</color>
     <!-- From: file:/C:/Users/ay/AndroidStudioProjects/UIApp2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values/values.xml -->
     <eat-comment/>
     <color name="abc_input_method_navigation_guard">@android:color/black</color>
@@ -246,9 +246,9 @@
     <!-- From: file:/C:/Users/ay/AndroidStudioProjects/UIApp2/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="colorAccent">#ffd700</item>
+        <item name="colorAccent">#fff</item>
         <item name="android:textColorPrimary">#fff</item>
-        <item name="android:background">#1e90ff</item>
+        <item name="android:background">@color/ab_bg</item>
     </style>
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -1171,6 +1171,16 @@
         <item name="android:minWidth">56dp</item>
         <item name="android:scaleType">center</item>
     </style>
+    <!-- From: file:/C:/Users/ay/AndroidStudioProjects/UIApp2/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="DPADButts">
+        <item name="android:layout_margin">5sp</item>
+        <item name="android:background">@drawable/dpad_butt_bg</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <!-- From: file:/C:/Users/ay/AndroidStudioProjects/UIApp2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values/values.xml -->
+    <eat-comment/>
     <style name="Platform.AppCompat" parent="android:Theme">
         <item name="android:windowNoTitle">true</item>
 

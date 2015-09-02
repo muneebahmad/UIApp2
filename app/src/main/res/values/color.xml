@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ab_bg">#1e90ff</color>
+    <color name="ab_bg">#616161</color>
     <color> name="play_green">#00e600</color>
 </resources>

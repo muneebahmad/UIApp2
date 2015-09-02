@@ -222,9 +222,7 @@ public class MainActivity extends AppCompatActivity implements MyTwoButtDialogLi
         } else if (id == R.id.action_disconnect) {
 
         } else if (id == R.id.action_quit) {
-            UIManager.getInstance().makeTwoButtonDialog(this, "Exit Dialog",
-                    "Do you really want to Shutdown and quit?",
-                    "Yes", "No");
+            makeExitDialog();
         } else if (id == R.id.action_share) {
 
         } else if (id == R.id.action_search) {
@@ -232,6 +230,12 @@ public class MainActivity extends AppCompatActivity implements MyTwoButtDialogLi
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void makeExitDialog() {
+        UIManager.getInstance().makeTwoButtonDialog(this, "Exit Dialog",
+                "Do you really want to shutdown and quit?",
+                "Yes", "No");
     }
 
     public static Activity getActivity() {
@@ -253,7 +257,7 @@ public class MainActivity extends AppCompatActivity implements MyTwoButtDialogLi
         if (isOpened) {
             this.drawer.closeDrawers();
         } else {
-            super.onBackPressed();
+            makeExitDialog();
         }
     }
 }/** end class. */

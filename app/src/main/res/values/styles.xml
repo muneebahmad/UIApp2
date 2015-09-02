@@ -9,8 +9,15 @@
     </style>
 
     <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="colorAccent">#ffd700</item>
+        <item name="colorAccent">#fff</item>
         <item name="android:textColorPrimary">#fff</item>
-        <item name="android:background">#1e90ff</item>
+        <item name="android:background">@color/ab_bg</item>
+    </style>
+
+    <style name="DPADButts">
+        <item name="android:layout_margin">5sp</item>
+        <item name="android:background">@drawable/dpad_butt_bg</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 </resources>

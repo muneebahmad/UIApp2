@@ -14,14 +14,6 @@
             android:orientation="vertical"
             >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/dialer_tv1"
-                android:text="Favorites"
-                android:textStyle="bold"
-                android:textColor="#000000"
-                />
 
         </LinearLayout>
 
