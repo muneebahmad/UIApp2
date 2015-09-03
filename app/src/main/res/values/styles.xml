@@ -15,9 +15,10 @@
     </style>
 
     <style name="DPADButts">
-        <item name="android:layout_margin">5sp</item>
+        <item name="android:layout_margin">0sp</item>
         <item name="android:background">@drawable/dpad_butt_bg</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">90sp</item>
+        <item name="android:layout_height">90sp</item>
+        <item name="android:layout_weight">1</item>
     </style>
 </resources>

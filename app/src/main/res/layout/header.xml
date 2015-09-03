@@ -2,15 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="178dp"
-    android:background="@color/ab_bg"
+    android:background="@drawable/bg_banner"
     android:orientation="vertical"
-    android:weightSum="1">
-
-
+    android:weightSum="1"
+    android:id="@+id/header_relative_layout"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="80sp"
         android:orientation="vertical"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
@@ -35,10 +35,21 @@
             android:textColor="#ffffff"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="5dp"
-            android:text="akash.bangad93@gmail.com"
+            android:text="hello@java.com"
             android:textSize="14sp"
             android:textStyle="normal"
+            />
 
+        <TextView
+            android:id="@+id/connection_index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="5dp"
+            android:text="Checking Status"
+            android:textSize="14sp"
+            android:textStyle="normal"
             />
     </LinearLayout>
 

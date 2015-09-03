@@ -1,16 +1,19 @@
 package pk.muneebahmad.ui;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import dringg.com.uiapp.MainActivity;
 import dringg.com.uiapp.R;
 import pk.muneebahmad.util.Log;
+import pk.muneebahmad.util.NetStats;
 
 /**
  * Created by ay on 8/28/2015.
@@ -83,6 +86,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             return vhItem;
         } else if (viewType == TYPE_HEADER) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.header, parent, false);
+            RelativeLayout r = (RelativeLayout) v.findViewById(R.id.header_relative_layout);
+            TextView t = (TextView) v.findViewById(R.id.connection_index);
+            if (NetStats.isConnected(v.getContext())) {
+                r.setBackgroundResource(R.drawable.bg_banner2);
+                t.setTextColor(Color.parseColor("#009900"));
+                t.setText("Online");
+            } else if (!(NetStats.isConnected(v.getContext()))) {
+                r.setBackgroundResource(R.drawable.bg_banner);
+                t.setTextColor(Color.parseColor("#ff0000"));
+                t.setText("Offline");
+            }
             ViewHolder vhHeader = new ViewHolder(v, viewType);
             return vhHeader;
         }

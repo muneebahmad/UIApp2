@@ -56,34 +56,39 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         SpannableString val = new SpannableString(" ");
+        String str = "";
         switch (position) {
             case 0:
-                Drawable img = context.getResources().getDrawable(imgResIds[0]);
-                img.setBounds(0, 0, img.getIntrinsicWidth(), img.getIntrinsicHeight());
-                ImageSpan imageSpan = new ImageSpan(img, ImageSpan.ALIGN_BOTTOM);
-                val.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                //Drawable img = context.getResources().getDrawable(imgResIds[0]);
+                //img.setBounds(0, 0, img.getIntrinsicWidth(), img.getIntrinsicHeight());
+                //ImageSpan imageSpan = new ImageSpan(img, ImageSpan.ALIGN_BOTTOM);
+                //val.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                str = "Call Log";
                 break;
             case 1:
-                Drawable img2 = context.getResources().getDrawable(imgResIds[1]);
-                img2.setBounds(0, 0, img2.getIntrinsicWidth(), img2.getIntrinsicHeight());
-                ImageSpan imageSpan2 = new ImageSpan(img2, ImageSpan.ALIGN_BOTTOM);
-                val.setSpan(imageSpan2, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                //Drawable img2 = context.getResources().getDrawable(imgResIds[1]);
+                //img2.setBounds(0, 0, img2.getIntrinsicWidth(), img2.getIntrinsicHeight());
+                //ImageSpan imageSpan2 = new ImageSpan(img2, ImageSpan.ALIGN_BOTTOM);
+                //val.setSpan(imageSpan2, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                str = "Dialer";
                 break;
             case 2:
-                Drawable img3 = context.getResources().getDrawable(imgResIds[2]);
-                img3.setBounds(0, 0, img3.getIntrinsicWidth(), img3.getIntrinsicHeight());
-                ImageSpan imageSpan3 = new ImageSpan(img3, ImageSpan.ALIGN_BOTTOM);
-                val.setSpan(imageSpan3, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                //Drawable img3 = context.getResources().getDrawable(imgResIds[2]);
+                //img3.setBounds(0, 0, img3.getIntrinsicWidth(), img3.getIntrinsicHeight());
+                //ImageSpan imageSpan3 = new ImageSpan(img3, ImageSpan.ALIGN_BOTTOM);
+                //val.setSpan(imageSpan3, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                str = "Starred";
                 break;
             case 3:
-                Drawable img4 = context.getResources().getDrawable(imgResIds[3]);
-                img4.setBounds(0, 0, img4.getIntrinsicWidth(), img4.getIntrinsicHeight());
-                ImageSpan imageSpan4 = new ImageSpan(img4, ImageSpan.ALIGN_BOTTOM);
-                val.setSpan(imageSpan4, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                //Drawable img4 = context.getResources().getDrawable(imgResIds[3]);
+                //img4.setBounds(0, 0, img4.getIntrinsicWidth(), img4.getIntrinsicHeight());
+                //ImageSpan imageSpan4 = new ImageSpan(img4, ImageSpan.ALIGN_BOTTOM);
+                //val.setSpan(imageSpan4, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                str = "Contacts";
                 break;
             default:
                 break;
         }
-        return val;
+        return str.toUpperCase();
     }
 }/** end class. */

@@ -25,6 +25,25 @@ public class CallLogFragment extends Fragment implements View.OnClickListener {
     private CallHistoryListLayout.AttendTypes a = CallHistoryListLayout.AttendTypes.CALL_INCOMING;
     View rootView;
 
+    public static String names[] = {
+            "Hammad",
+            "Shahid",
+            "Jawad",
+            "Nizam",
+            "Sabir",
+            "Waseem",
+            "Imran",
+            "Afzal",
+            "Tanveer",
+            "Hassan",
+            "Zahid"
+    };
+
+    public static int phNums[] = {828282828, 78787878, 12894949, 89898989, 89898989,
+            89898988,  90909090, 90909090, 13435466, 14353555,
+            98989090
+    };
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -65,7 +84,7 @@ public class CallLogFragment extends Fragment implements View.OnClickListener {
             int r = new Random().nextInt(3);
 
 
-            String names[] = {
+            String n[] = {
                     "HK Baba",
                     "Jahanzeb",
                     "Rfiq",
@@ -101,7 +120,7 @@ public class CallLogFragment extends Fragment implements View.OnClickListener {
 
             checkForCallType(r);
 
-            this.mainLayout.addView(new CallHistoryListLayout(rootView.getContext(), names[z], phNo[z] + "", time,
+            this.mainLayout.addView(new CallHistoryListLayout(rootView.getContext(), n[z], phNo[z] + "", time,
                             a, i),
                     params);
         }
@@ -112,25 +131,6 @@ public class CallLogFragment extends Fragment implements View.OnClickListener {
      * @param rootView
      */
     private void addSmsLog(View rootView) {
-        String names[] = {
-                "Hammad",
-                "Shahid",
-                "Jawad",
-                "Nizam",
-                "Sabir",
-                "Waseem",
-                "Imran",
-                "Afzal",
-                "Tanveer",
-                "Hassan",
-                "Zahid"
-        };
-
-
-        int phNums[] = {828282828, 78787878, 12894949, 89898989, 89898989,
-                        89898988,  90909090, 90909090, 13435466, 14353555,
-                        98989090
-        };
         for (int i = 0; i < 24; i++) {
             int r = new Random().nextInt(3);
             int n = new Random().nextInt(11);

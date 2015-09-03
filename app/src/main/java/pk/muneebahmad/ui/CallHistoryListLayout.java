@@ -1,6 +1,7 @@
 package pk.muneebahmad.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.Gravity;
 import android.view.View;
@@ -9,7 +10,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import dringg.com.uiapp.Messenger;
 import dringg.com.uiapp.R;
+import pk.muneebahmad.data.SharedData;
 import pk.muneebahmad.util.DP;
 import pk.muneebahmad.util.Log;
 
@@ -21,6 +24,8 @@ public class CallHistoryListLayout extends LinearLayout implements View.OnClickL
 
     private LinearLayout icPanel;
     private int i;
+    private String name;
+    private String phoneNum;
 
     public static enum AttendTypes {
         CALL_MISSED,
@@ -39,6 +44,8 @@ public class CallHistoryListLayout extends LinearLayout implements View.OnClickL
         super(context);
         this.i = i;
         setOnClickListener(this);
+        this.name = name;
+        this.phoneNum = phoneNum;
         make(context, name, phoneNum, time, attendTypes);
     }
 
@@ -49,9 +56,8 @@ public class CallHistoryListLayout extends LinearLayout implements View.OnClickL
      * @param phoneNum
      * @param time
      * @param attendTypes
-     * @param msgTypes
      */
-    public void make(Context context, String name, String phoneNum, String time, AttendTypes attendTypes) {
+    private void make(Context context, String name, String phoneNum, String time, AttendTypes attendTypes) {
         this.setOrientation(LinearLayout.HORIZONTAL);
         this.setBackgroundResource(R.drawable.tv_bg);
         this.setWeightSum(4);
@@ -139,6 +145,11 @@ public class CallHistoryListLayout extends LinearLayout implements View.OnClickL
     public void onClick(View v) {
         if (v == this) {
             Log.log(Log.LOG_ERROR, "Hello >><< " + (i + 1));
+            if (UIManager.getInstance().getActivatedView() == UIManager.ActivatedView.VIEW_SMS) {
+                v.getContext().startActivity(new Intent(v.getContext(), Messenger.class));
+                SharedData.getInstance().setMessengerName(name.toUpperCase());
+                SharedData.getInstance().setMessengerNo(Integer.parseInt(phoneNum));
+            }
         } else if (v == this.icPanel) {
             Log.log(Log.LOG_ERROR, "Hello IC PANEL " + (i + 1));
         }

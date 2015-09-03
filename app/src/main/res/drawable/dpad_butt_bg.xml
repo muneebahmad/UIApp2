@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true" >
-        <shape>
-            <gradient
-                android:startColor="#1eccff"
-                android:endColor="#1eccff"
-                android:angle="270" />
-            <stroke
-                android:width="1dp"
-                android:color="#999999"
-                />
-            <corners
-                android:radius="25sp"
-                />
-            <padding
-                android:left="5dp"
-                android:top="5dp"
-                android:right="5dp"
-                android:bottom="5dp" />
-        </shape>
+        <bitmap android:src="@drawable/dpad_key_bg" />
     </item>
 
     <item android:state_focused="true" >
@@ -42,23 +25,7 @@
     </item>
 
     <item>
-        <shape>
-            <gradient
-                android:startColor="#fff"
-                android:endColor="#bdbdbd"
-                android:angle="270" />
-            <stroke
-                android:width="0.5dp"
-                android:color="#aaaaaa"
-                />
-            <corners
-                android:radius="25sp"
-                />
-            <padding
-                android:left="5dp"
-                android:top="5dp"
-                android:right="5dp"
-                android:bottom="5dp" />
-        </shape>
+        <bitmap android:src="@drawable/key_bgs" />
+
     </item>
 </selector>

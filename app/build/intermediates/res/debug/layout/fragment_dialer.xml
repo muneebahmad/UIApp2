@@ -3,12 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/welcome_bg3"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/ab_bg"
+        android:id="@+id/tv_layout"
         >
 
         <TextView
@@ -33,36 +36,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/ab_bg"
             android:orientation="vertical"
             android:layout_gravity="bottom"
             >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            >
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/dialpad"
-                android:id="@+id/butt_dialpad"
-                android:background="@android:color/transparent"
-                android:layout_margin="7sp"
-                android:gravity="left"
-                />
-
-            <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/bckspace5"
-                android:id="@+id/butt_bckspace"
-                android:background="@android:color/transparent"
-                android:layout_margin="7sp"
-                android:gravity="right"
-                />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -70,12 +46,14 @@
                 android:orientation="vertical"
                 android:gravity="bottom|center"
                 android:id="@+id/dpad_layout"
+                android:background="@drawable/dpad_bg"
                 >
 
                         <LinearLayout
                             android:orientation="horizontal"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:weightSum="3"
                             >
                             <ImageButton
                                 android:id="@+id/butt_one"
@@ -97,8 +75,9 @@
 
                     <LinearLayout
                         android:orientation="horizontal"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:weightSum="3"
                         >
                         <ImageButton
                             android:id="@+id/butt_four"
@@ -120,8 +99,9 @@
 
                     <LinearLayout
                         android:orientation="horizontal"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:weightSum="3"
                         >
                         <ImageButton
                             android:id="@+id/butt_seven"
@@ -143,8 +123,9 @@
 
                     <LinearLayout
                         android:orientation="horizontal"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:weightSum="3"
                         >
                         <ImageButton
                             android:id="@+id/butt_sharp"
@@ -165,6 +146,48 @@
                     </LinearLayout>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                android:background="@color/ab_bg"
+                android:layout_gravity="center"
+                >
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/dialpad"
+                    android:id="@+id/butt_dialpad"
+                    android:background="@android:color/transparent"
+                    android:layout_margin="7sp"
+                    android:layout_weight="1"
+                    />
+
+                    <ImageButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/call_butt_bg"
+                        android:background="@android:color/transparent"
+                        android:id="@+id/call_butt"
+                        android:layout_margin="7sp"
+                        android:layout_weight="1"
+                        />
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/btn_bck"
+                    android:id="@+id/butt_bckspace"
+                    android:background="@android:color/transparent"
+                    android:layout_marginTop="7sp"
+                    android:layout_marginBottom="7sp"
+                    android:layout_weight="1"
+                    />
+                </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

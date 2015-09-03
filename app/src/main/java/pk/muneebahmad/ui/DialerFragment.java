@@ -1,10 +1,12 @@
 package pk.muneebahmad.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -21,6 +23,7 @@ import android.widget.TextView;
 
 import dringg.com.uiapp.R;
 import pk.muneebahmad.util.Log;
+import pk.muneebahmad.util.NetStats;
 
 /**
  * Created by muneebahmad on 8/25/2015.
@@ -30,13 +33,17 @@ public class DialerFragment extends Fragment implements View.OnClickListener,
 
     private TextView tv;
     private ImageButton dialpadButt;
+    private ImageButton callButt;
     private LinearLayout dpadLayout;
+    private LinearLayout tvLayout;
     private View openLayout;
 
     private Animation downAnim;
     private Animation downAnimRev;
     private ImageButton butts[];
     private ImageButton bckSpace;
+
+    private Vibrator vibrator;
 
     private enum DpadState {
         DPAD_UP,
@@ -55,6 +62,7 @@ public class DialerFragment extends Fragment implements View.OnClickListener,
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_dialer, container, false);
+
         this.tv = (TextView) rootView.findViewById(R.id.dialer_field);
 
         this.state = State.STATE_HINT;
@@ -70,6 +78,8 @@ public class DialerFragment extends Fragment implements View.OnClickListener,
         initComponents(rootView);
         this.dpad = DpadState.DPAD_DOWN;
         this.dpadLayout.startAnimation(new TranslateToHide(1.0f, 1.0f, 1.0f, 0, 500, dpadLayout, true));
+        this.tvLayout.startAnimation(new TranslateToHide(1, 1, 1, -1, 500, tvLayout, true));
+        this.callButt.setEnabled(false);
         this.dialpadButt.setRotation(180.0f);
         checkNetwork(getContext());
         return rootView;
@@ -80,12 +90,16 @@ public class DialerFragment extends Fragment implements View.OnClickListener,
      * @param rootView
      */
     private void initComponents(View rootView) {
+        vibrator = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
         this.dpadLayout = (LinearLayout) rootView.findViewById(R.id.dpad_layout);
+        this.tvLayout = (LinearLayout) rootView.findViewById(R.id.tv_layout);
         this.dialpadButt = (ImageButton) rootView.findViewById(R.id.butt_dialpad);
         this.dialpadButt.setOnClickListener(this);
         this.bckSpace = (ImageButton) rootView.findViewById(R.id.butt_bckspace);
         this.bckSpace.setOnClickListener(this);
         this.bckSpace.setOnLongClickListener(this);
+        this.callButt = (ImageButton) rootView.findViewById(R.id.call_butt);
+        this.callButt.setOnClickListener(this);
         this.downAnim = AnimationUtils.loadAnimation(getContext(), R.anim.key_butt_rotate);
         this.downAnimRev = AnimationUtils.loadAnimation(getContext(), R.anim.key_butt_rotate_reverse);
 
@@ -105,19 +119,26 @@ public class DialerFragment extends Fragment implements View.OnClickListener,
 
         for (int i = 0; i < butts.length; i++) {
             butts[i].setOnClickListener(this);
+            butts[i].setOnLongClickListener(this);
         }
     }
-    
+
     private void checkNetwork(Context context) {
-        ConnectivityManager connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo kWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (kWifi.isConnected()) {
+        if (NetStats.isConnected(getContext())) {
             this.tv.setText("Online");
             Log.log(Log.LOG_ERROR, "CONNECTED TO WIFI....");
-        }else if (!(kWifi.isConnected())) {
+        }else if (!(NetStats.isConnected(getContext()))) {
             this.tv.setText("Offline");
             Log.log(Log.LOG_ERROR, "NOT CONNECTED TO WIFI....");
         }
+    }
+
+    /**
+     *
+     * @param millis
+     */
+    private void vibrateFor(long millis) {
+        vibrator.vibrate(millis);
     }
 
     /**
@@ -135,14 +156,18 @@ public class DialerFragment extends Fragment implements View.OnClickListener,
             if (this.dpad == DpadState.DPAD_UP) {
                 this.dpad = DpadState.DPAD_DOWN;
                 this.dpadLayout.startAnimation(new TranslateToHide(1.0f, 1.0f, 1.0f, 0, 500, dpadLayout, true));
+                this.tvLayout.startAnimation(new TranslateToHide(1, 1, 1, -1, 500, tvLayout, true));
                 this.dialpadButt.clearAnimation();
                 this.dialpadButt.startAnimation(this.downAnimRev);
+                this.callButt.setEnabled(false);
             } else if (this.dpad == DpadState.DPAD_DOWN) {
                 this.dpad = DpadState.DPAD_UP;
                 this.tv.setText("");
                 this.dpadLayout.startAnimation(new TranslateToShow(1.0f, 1.0f, 0.0f, 1.0f, 500, dpadLayout, true));
+                this.tvLayout.startAnimation(new TranslateToShow(1, 1, -1, 1, 500, tvLayout, true));
                 this.dialpadButt.clearAnimation();
                 this.dialpadButt.startAnimation(this.downAnim);
+                this.callButt.setEnabled(true);
             }
         } else if (v == this.bckSpace) {
             String str = this.tv.getText().toString();
@@ -151,28 +176,99 @@ public class DialerFragment extends Fragment implements View.OnClickListener,
             } else {
                 this.tv.setText("");
             }
+        } else if (v == this.callButt && this.callButt.isEnabled()) {
+            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + this.tv.getText().toString()));
+            startActivity(intent);
         }
 
         for (int i = 0; i < 9; i++) {
             if (v == butts[i]) {
                 tv.append((i + 1) + "");
+                playButtSounds(i);
             }
         }
         if (v == butts[9]) {
             tv.append("#");
+            playButtSounds(9);
         } else if (v == butts[10]) {
             tv.append("0");
+            playButtSounds(10);
         } else if (v == butts[11]) {
             tv.append("*");
+            playButtSounds(11);
         }
     }
 
     @Override
     public boolean onLongClick(View v) {
+        playButtSounds(10);
         if (v == this.bckSpace) {
             this.tv.setText("");
+            vibrateFor(100);
+        } else if (v == butts[9]) {
+            this.tv.append("#");
+        } else if (v == butts[10]) {
+            this.tv.append("+");
+        } else if (v == butts[11]) {
+            this.tv.append("*");
+        }
+
+        if (v != this.bckSpace) {
+            vibrateFor(50);
         }
         return false;
+    }
+
+    private void playButtSounds(int i) {
+        MediaPlayer md = MediaPlayer.create(getContext(), R.raw.dtmf1);
+        MediaPlayer one = MediaPlayer.create(getContext(), R.raw.dtmf2);
+        MediaPlayer two = MediaPlayer.create(getContext(), R.raw.dtmf2);
+        MediaPlayer three = MediaPlayer.create(getContext(), R.raw.dtmf2);
+        MediaPlayer four = MediaPlayer.create(getContext(), R.raw.dtmf2);
+        MediaPlayer five = MediaPlayer.create(getContext(), R.raw.dtmf2);
+        MediaPlayer six = MediaPlayer.create(getContext(), R.raw.dtmf2);
+        MediaPlayer seven = MediaPlayer.create(getContext(), R.raw.dtmf2);
+        MediaPlayer eight = MediaPlayer.create(getContext(), R.raw.dtmf2);
+        MediaPlayer nine = MediaPlayer.create(getContext(), R.raw.dtmf2);
+
+        switch (i) {
+            case 0:
+                one.start();
+                break;
+            case 1:
+                two.start();
+                break;
+            case 2:
+                three.start();
+                break;
+            case 3:
+                four.start();
+                break;
+            case 4:
+                five.start();
+                break;
+            case 5:
+                six.start();
+                break;
+            case 6:
+                seven.start();
+                break;
+            case 7:
+                eight.start();
+                break;
+            case 8:
+                nine.start();
+                break;
+            case 9:
+                md.start();
+                break;
+            case 10:
+                md.start();
+                break;
+            case 11:
+                md.start();
+                break;
+        }
     }
 
     /**

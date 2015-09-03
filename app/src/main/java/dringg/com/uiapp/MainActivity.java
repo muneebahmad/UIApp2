@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements MyTwoButtDialogLi
         //-------------------------------------------------
         UIManager.getInstance().setActivatedView(UIManager.ActivatedView.VIEW_MAIN);
         UIManager.getInstance().addTwoButtonDialogClickListener(this);
+
         setToolbar();
         setDrawer();
         setViewPager();
@@ -121,7 +122,6 @@ public class MainActivity extends AppCompatActivity implements MyTwoButtDialogLi
         this.mRecyclerView.setAdapter(this.mAdapter);
         this.mLayoutManager = new LinearLayoutManager(this);
         this.mRecyclerView.setLayoutManager(this.mLayoutManager);
-
         this.drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar,
