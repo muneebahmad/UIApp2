@@ -15,7 +15,7 @@
     <bool name="abc_config_showMenuShortcutsWhenKeyboardPresent">false</bool>
     <!-- From: file:/C:/Users/ay/AndroidStudioProjects/UIApp2/app/src/main/res/values/color.xml -->
     <eat-comment/>
-    <color name="ab_bg">#558b2f</color>
+    <color name="ab_bg">#555555</color>
     <!-- From: file:/C:/Users/ay/AndroidStudioProjects/UIApp2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values/values.xml -->
     <eat-comment/>
     <color name="abc_input_method_navigation_guard">@android:color/black</color>

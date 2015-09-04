@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ab_bg">#558b2f</color>
+    <color name="ab_bg">#555555</color>
     <color name="play_green">#00e600</color>
     <color name="text_color">#fff</color>
     <color name="msg_col">#1e90ff</color>
