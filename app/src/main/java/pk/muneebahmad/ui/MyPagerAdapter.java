@@ -77,7 +77,7 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
                 //img3.setBounds(0, 0, img3.getIntrinsicWidth(), img3.getIntrinsicHeight());
                 //ImageSpan imageSpan3 = new ImageSpan(img3, ImageSpan.ALIGN_BOTTOM);
                 //val.setSpan(imageSpan3, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                str = "Starred";
+                str = "Favorites";
                 break;
             case 3:
                 //Drawable img4 = context.getResources().getDrawable(imgResIds[3]);

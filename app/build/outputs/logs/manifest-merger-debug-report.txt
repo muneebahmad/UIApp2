@@ -93,6 +93,18 @@ category#MESSENGERACTIVITY
 ADDED from AndroidManifest.xml:45:17
 	android:name
 		ADDED from AndroidManifest.xml:45:27
+activity#dringg.com.uiapp.CallDetailsActivity
+ADDED from AndroidManifest.xml:48:9
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:50:13
+	android:name
+		ADDED from AndroidManifest.xml:49:13
+intent-filter#CALLDETAILSACTIVITY+android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:56:13
+category#CALLDETAILSACTIVITY
+ADDED from AndroidManifest.xml:58:17
+	android:name
+		ADDED from AndroidManifest.xml:58:27
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 MERGED from com.android.support:appcompat-v7:23.0.0:20:5

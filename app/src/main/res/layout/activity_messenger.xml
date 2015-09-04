@@ -24,6 +24,7 @@
             android:background="@color/ab_bg"
             android:padding="5sp"
             android:weightSum="3"
+            android:id="@+id/color_item_1"
             >
 
             <TextView
@@ -62,13 +63,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="4"
+        android:weightSum="8"
         >
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/messenger_scroll_view"
+        android:layout_weight="2"
+        android:foregroundGravity="bottom"
         >
 
     <LinearLayout
@@ -76,6 +79,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:id="@+id/messenger_mail_layout"
+        android:foregroundGravity="bottom"
         >
 
     </LinearLayout>
@@ -85,29 +89,79 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:gravity="bottom"
+        android:layout_weight="6"
         android:weightSum="5"
+        android:foregroundGravity="top"
+        android:background="@color/ab_bg"
+        android:id="@+id/color_item_2"
         >
-            <TextView
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="22sp"
-                android:background="@color/ab_bg"
-                android:hint="send a new message"
+                android:hint="type a new message"
                 android:padding="10sp"
-                android:id="@+id/send_msg_tv"
+                android:id="@+id/send_msg_et"
                 android:layout_weight="1"
                 />
 
-        <ImageButton
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="46sp"
+                android:src="@drawable/ic_sms"
+                android:layout_weight="4"
+                android:background="@color/ab_bg"
+                android:id="@+id/send_button"
+                />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="46sp"
-            android:src="@drawable/dialpad"
-            android:layout_weight="4"
-            android:background="@color/ab_bg"
-            android:id="@+id/send_button"
-            />
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:gravity="center"
+            >
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_settings_32"
+                android:id="@+id/butt_settings"
+                android:gravity="left"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                />
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit_32"
+                android:id="@+id/butt_edit"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                />
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_share_32"
+                android:id="@+id/butt_share"
+                android:gravity="right"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                />
+
+        </LinearLayout>
     </LinearLayout>
         </LinearLayout>
 

@@ -45,6 +45,19 @@
                 <category android:name="MESSENGERACTIVITY" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CallDetailsActivity"
+            android:parentActivityName=".MainActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"
+                />
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="CALLDETAILSACTIVITY" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

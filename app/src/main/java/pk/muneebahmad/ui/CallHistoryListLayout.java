@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import dringg.com.uiapp.CallDetailsActivity;
 import dringg.com.uiapp.Messenger;
 import dringg.com.uiapp.R;
 import pk.muneebahmad.data.SharedData;
@@ -149,6 +150,10 @@ public class CallHistoryListLayout extends LinearLayout implements View.OnClickL
                 v.getContext().startActivity(new Intent(v.getContext(), Messenger.class));
                 SharedData.getInstance().setMessengerName(name.toUpperCase());
                 SharedData.getInstance().setMessengerNo(Integer.parseInt(phoneNum));
+            } else if (UIManager.getInstance().getActivatedView() == UIManager.ActivatedView.VIEW_CALL_LOG) {
+                SharedData.getInstance().setCallName(name.toUpperCase());
+                SharedData.getInstance().setCallNo(phoneNum);
+                v.getContext().startActivity(new Intent(v.getContext(), CallDetailsActivity.class));
             }
         } else if (v == this.icPanel) {
             Log.log(Log.LOG_ERROR, "Hello IC PANEL " + (i + 1));
