@@ -1,6 +1,7 @@
 package pk.muneebahmad.ui;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import dringg.com.uiapp.MainActivity;
 import dringg.com.uiapp.R;
+import dringg.com.uiapp.ThemesActivity;
 import pk.muneebahmad.util.Log;
 import pk.muneebahmad.util.NetStats;
 
@@ -79,6 +81,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
                         t = "Clicked Settings";
                     } else if (v == parent.getChildAt(7)) {
                         t = "Clicked License";
+                    } else if (v == parent.getChildAt(8)) {
+                        v.getContext().startActivity(new Intent(MainActivity.activity, ThemesActivity.class));
                     }
                     Log.log(Log.LOG_ERROR, t);
                 }

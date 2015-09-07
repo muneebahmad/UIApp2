@@ -42,7 +42,7 @@ public class DialerFragment extends Fragment implements View.OnClickListener,
     private Animation downAnimRev;
     private ImageButton butts[];
     private ImageButton bckSpace;
-
+    private LinearLayout colorItem1;
     private Vibrator vibrator;
 
     private enum DpadState {
@@ -82,6 +82,7 @@ public class DialerFragment extends Fragment implements View.OnClickListener,
         this.callButt.setEnabled(false);
         this.dialpadButt.setRotation(180.0f);
         checkNetwork(getContext());
+        setTheme();
         return rootView;
     }
 
@@ -91,6 +92,7 @@ public class DialerFragment extends Fragment implements View.OnClickListener,
      */
     private void initComponents(View rootView) {
         vibrator = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
+        this.colorItem1 = (LinearLayout) rootView.findViewById(R.id.color_item_1);
         this.dpadLayout = (LinearLayout) rootView.findViewById(R.id.dpad_layout);
         this.tvLayout = (LinearLayout) rootView.findViewById(R.id.tv_layout);
         this.dialpadButt = (ImageButton) rootView.findViewById(R.id.butt_dialpad);
@@ -131,6 +133,11 @@ public class DialerFragment extends Fragment implements View.OnClickListener,
             this.tv.setText("Offline");
             Log.log(Log.LOG_ERROR, "NOT CONNECTED TO WIFI....");
         }
+    }
+
+    private void setTheme() {
+        this.tvLayout.setBackgroundColor(Color.parseColor(UIManager.getInstance().getThemeColor()));
+        this.colorItem1.setBackgroundColor(Color.parseColor(UIManager.getInstance().getThemeColor()));
     }
 
     /**

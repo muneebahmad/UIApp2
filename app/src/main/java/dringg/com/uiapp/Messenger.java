@@ -1,5 +1,6 @@
 package dringg.com.uiapp;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.NavUtils;
@@ -18,6 +19,7 @@ import java.util.Random;
 
 import pk.muneebahmad.data.SharedData;
 import pk.muneebahmad.ui.MessengerLayout;
+import pk.muneebahmad.ui.UIManager;
 import pk.muneebahmad.util.Dater;
 import pk.muneebahmad.util.Log;
 
@@ -40,6 +42,8 @@ public class Messenger extends AppCompatActivity implements View.OnClickListener
     private EditText smsEt;
 
     public static Messenger messenger;
+    private LinearLayout colorItem1;
+    private LinearLayout colorItem2;
 
     String msgs[] = {
             "Hello i am working, what are you doing?",
@@ -66,6 +70,7 @@ public class Messenger extends AppCompatActivity implements View.OnClickListener
 
         initComponents();
         populate();
+        setTheme();
     }
 
     private void setToolbar() {
@@ -74,6 +79,8 @@ public class Messenger extends AppCompatActivity implements View.OnClickListener
     }
 
     private void initComponents() {
+        this.colorItem1 = (LinearLayout) findViewById(R.id.color_item_1);
+        this.colorItem2 = (LinearLayout) findViewById(R.id.color_item_2);
         Log.log(Log.LOG_ERROR, Dater.getInstance().getDate());
         this.mainLayout = (LinearLayout) findViewById(R.id.messenger_mail_layout);
         this.scrollView = (ScrollView) findViewById(R.id.messenger_scroll_view);
@@ -97,6 +104,12 @@ public class Messenger extends AppCompatActivity implements View.OnClickListener
 
         this.numView.setText(SharedData.getInstance().getMessengerNo() + "");
         this.timeView.setText("Last seen today \n" + "@08:00");
+    }
+
+    private void setTheme() {
+        toolbar.setBackgroundColor(Color.parseColor(UIManager.getInstance().getThemeColor()));
+        this.colorItem1.setBackgroundColor(Color.parseColor(UIManager.getInstance().getThemeColor()));
+        this.colorItem2.setBackgroundColor(Color.parseColor(UIManager.getInstance().getThemeColor()));
     }
 
     private void populate() {

@@ -37,12 +37,24 @@ public class UIManager {
         VIEW_NULL
     }
 
+    public static enum SelectedTheme {
+        THEME_DARK_GRAY,
+        THEME_ORANGE,
+        THEME_RED,
+        THEME_LT_GRAY,
+        THEME_GREEN,
+        THEME_PL_GREEN,
+        THEME_BLUE,
+        THEME_WA
+    }
+
     private ActivatedView activatedView = ActivatedView.VIEW_NULL;
     private MyTwoButtDialogListener twoButtDialogListener;
     private MyOneButtonDialogListener oneButtonDialogListener;
+    private SelectedTheme selectedTheme;
 
     public UIManager() {
-
+        this.selectedTheme = SelectedTheme.THEME_DARK_GRAY;
     }
 
     /**
@@ -71,7 +83,7 @@ public class UIManager {
      */
     public void makeTwoButtonDialog(Activity activity, final String title, final String msg,
                                            final String butt1Label, final String butt2Label) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.AppCompatAlertDialogStyle);
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity, getStyleID());
             builder.setTitle(title).setMessage(msg).
                     setPositiveButton(butt1Label, new DialogInterface.OnClickListener() {
                         @Override
@@ -97,7 +109,7 @@ public class UIManager {
      */
     public void makeOneButtonDialog(Activity activity, final String title, final String msg,
                                     final String butt1Label) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.AppCompatAlertDialogStyle);
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity, getStyleID());
         builder.setMessage(msg).setTitle(title).setPositiveButton(butt1Label, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -114,7 +126,7 @@ public class UIManager {
      * @param array
      */
     public void makeCpDialog(final Activity activity, final String title, String[] array) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.AppCompatAlertDialogStyle);
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity, getStyleID());
         LayoutInflater inflater = activity.getLayoutInflater();
         View cView = (View) inflater.inflate(R.layout.clip_dialog_layout, null);
         builder.setTitle(title);
@@ -140,6 +152,28 @@ public class UIManager {
         dialog.show();
     }
 
+    private int getStyleID() {
+        if (getSelectedTheme() == SelectedTheme.THEME_DARK_GRAY) {
+            return R.style.AppCompatAlertDialogStyle;
+        } else if (getSelectedTheme() == SelectedTheme.THEME_BLUE) {
+            return R.style.AppCompatAlertDialogStyleBlue;
+        } else if (getSelectedTheme() == SelectedTheme.THEME_GREEN) {
+            return R.style.AppCompatAlertDialogStyleGreen;
+        } else if (getSelectedTheme() == SelectedTheme.THEME_LT_GRAY) {
+            return R.style.AppCompatAlertDialogStyleLtGray;
+        } else if (getSelectedTheme() == SelectedTheme.THEME_PL_GREEN) {
+            return R.style.AppCompatAlertDialogStyleGreen;
+        } else if (getSelectedTheme() == SelectedTheme.THEME_RED) {
+            return R.style.AppCompatAlertDialogStyleRed;
+        } else if (getSelectedTheme() == SelectedTheme.THEME_ORANGE) {
+            return R.style.AppCompatAlertDialogStyleOrange;
+        } else if (getSelectedTheme() == SelectedTheme.THEME_WA) {
+            return R.style.AppCompatAlertDialogStyleWA;
+        } else {
+            return 0;
+        }
+    }
+
     /**
      *
      * @param twoButtDialogListener
@@ -158,18 +192,40 @@ public class UIManager {
 
     /**
      *
-     * @param cor
+     * @return
      */
-    public void setTheme(int cor) {
-        this.color = cor;
+    public SelectedTheme getSelectedTheme() {
+        return selectedTheme;
     }
 
     /**
      *
-     * @return
+     * @param selectedTheme
      */
-    public int getTheme() {
-        return this.color;
+    public void setSelectedTheme(SelectedTheme selectedTheme) {
+        this.selectedTheme = selectedTheme;
+    }
+
+    public String getThemeColor() {
+        if (selectedTheme == SelectedTheme.THEME_DARK_GRAY) {
+            return "#555555";
+        } else if (selectedTheme == SelectedTheme.THEME_GREEN) {
+            return "#558500";
+        } else if (selectedTheme == SelectedTheme.THEME_LT_GRAY) {
+            return "#999999";
+        } else if (selectedTheme == SelectedTheme.THEME_ORANGE) {
+            return "#ffd700";
+        } else if (selectedTheme == SelectedTheme.THEME_RED) {
+            return "#ff0000";
+        } else if (selectedTheme == SelectedTheme.THEME_BLUE) {
+            return "#1e90ff";
+        } else if (selectedTheme == SelectedTheme.THEME_PL_GREEN) {
+            return "#00e600";
+        } else if (selectedTheme == SelectedTheme.THEME_WA) {
+            return "#ff2e8a06";
+        } else {
+            return "#555555";
+        }
     }
 
     /**

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="ab_bg">#555555</color>
-    <color name="play_green">#00e600</color>
+    <color name="theme_blue">#1e90ff</color>
+    <color name="theme_orange">#ffd700</color>
+    <color name="theme_red">#ff0000</color>
+    <color name="theme_ltgray">#999999</color>
+    <color name="theme_green">#558500</color>
+    <color name="theme_plgreen">#00e600</color>
+    <color name="theme_wa">#ff2e8a06</color>
     <color name="text_color">#fff</color>
     <color name="msg_col">#1e90ff</color>
 </resources>

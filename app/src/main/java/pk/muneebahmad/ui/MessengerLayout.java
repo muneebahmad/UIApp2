@@ -147,7 +147,23 @@ public class MessengerLayout extends LinearLayout implements View.OnLongClickLis
      * @param array
      */
     private void makeDialog(final Activity activity, final String title, String[] array) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.AppCompatAlertDialogStyle);
+        int style = 0;
+        if (UIManager.getInstance().getSelectedTheme() == UIManager.SelectedTheme.THEME_DARK_GRAY) {
+            style = R.style.AppCompatAlertDialogStyle;
+        } else if (UIManager.getInstance().getSelectedTheme() == UIManager.SelectedTheme.THEME_BLUE) {
+            style = R.style.AppCompatAlertDialogStyleBlue;
+        } else if (UIManager.getInstance().getSelectedTheme() == UIManager.SelectedTheme.THEME_GREEN) {
+            style = R.style.AppCompatAlertDialogStyleGreen;
+        } else if (UIManager.getInstance().getSelectedTheme() == UIManager.SelectedTheme.THEME_LT_GRAY) {
+            style = R.style.AppCompatAlertDialogStyleLtGray;
+        } else if (UIManager.getInstance().getSelectedTheme() == UIManager.SelectedTheme.THEME_PL_GREEN) {
+            style = R.style.AppCompatAlertDialogStyleGreen;
+        } else if (UIManager.getInstance().getSelectedTheme() == UIManager.SelectedTheme.THEME_RED) {
+            style = R.style.AppCompatAlertDialogStyleRed;
+        } else if (UIManager.getInstance().getSelectedTheme() == UIManager.SelectedTheme.THEME_ORANGE) {
+            style = R.style.AppCompatAlertDialogStyleOrange;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity, style);
         LayoutInflater inflater = activity.getLayoutInflater();
         View cView = (View) inflater.inflate(R.layout.clip_dialog_layout, null);
         builder.setTitle(title);

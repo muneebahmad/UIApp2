@@ -118,7 +118,7 @@
                 android:layout_height="46sp"
                 android:src="@drawable/ic_sms"
                 android:layout_weight="4"
-                android:background="@color/ab_bg"
+                android:background="@android:color/transparent"
                 android:id="@+id/send_button"
                 />
         </LinearLayout>

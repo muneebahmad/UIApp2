@@ -3,6 +3,7 @@ package dringg.com.uiapp;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
@@ -51,7 +52,8 @@ public class MainActivity extends AppCompatActivity implements MyTwoButtDialogLi
             "Contacts",
             "Favorites",
             "Settings",
-            "License"
+            "License",
+            "Themes"
     };
 
     private int[] icons = {
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements MyTwoButtDialogLi
             R.drawable.ic_profile,
             R.drawable.ic_favorites,
             R.drawable.ic_settings,
+            R.drawable.ic_license,
             R.drawable.ic_license
     };
 
@@ -108,6 +111,9 @@ public class MainActivity extends AppCompatActivity implements MyTwoButtDialogLi
         setToolbar();
         setDrawer();
         setViewPager();
+
+        setTheme();
+        //setTheme();
     }
 
     private void setToolbar() {
@@ -243,6 +249,11 @@ public class MainActivity extends AppCompatActivity implements MyTwoButtDialogLi
 
     public static Activity getActivity() {
         return activity;
+    }
+
+    private void setTheme() {
+        toolbar.setBackgroundColor(Color.parseColor(UIManager.getInstance().getThemeColor()));
+        pagerTitleStrip.setBackgroundColor(Color.parseColor(UIManager.getInstance().getThemeColor()));
     }
 
     @Override

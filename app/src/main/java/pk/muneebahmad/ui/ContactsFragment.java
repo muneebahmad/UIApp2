@@ -1,5 +1,6 @@
 package pk.muneebahmad.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -73,6 +74,7 @@ public class ContactsFragment extends Fragment implements SearchView.OnQueryText
             int r = new Random().nextInt(16);
             this.mainLayout.addView(new ContactsLayout(getContext(), names[r], "" + pN[r], null, i), params);
         }
+        setTheme();
         return rootView;
     }
 
@@ -82,6 +84,10 @@ public class ContactsFragment extends Fragment implements SearchView.OnQueryText
      */
     private void addSearchView(View rootView) {
         this.searchView = (SearchView) rootView.findViewById(R.id.contacts_search_view);
+    }
+
+    private void setTheme() {
+        this.searchView.setBackgroundColor(Color.parseColor(UIManager.getInstance().getThemeColor()));
     }
 
     @Override

@@ -153,6 +153,7 @@
                 android:orientation="horizontal"
                 android:weightSum="3"
                 android:background="@color/ab_bg"
+                android:id="@+id/color_item_1"
                 android:layout_gravity="center"
                 >
 

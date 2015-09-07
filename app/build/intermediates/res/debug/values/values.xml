@@ -61,7 +61,6 @@
     <!-- From: file:/C:/Users/ay/AndroidStudioProjects/UIApp2/app/src/main/res/values/color.xml -->
     <eat-comment/>
     <color name="msg_col">#1e90ff</color>
-    <color name="play_green">#00e600</color>
     <!-- From: file:/C:/Users/ay/AndroidStudioProjects/UIApp2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values/values.xml -->
     <eat-comment/>
     <color name="primary_dark_material_dark">@android:color/black</color>
@@ -85,6 +84,13 @@
     <!-- From: file:/C:/Users/ay/AndroidStudioProjects/UIApp2/app/src/main/res/values/color.xml -->
     <eat-comment/>
     <color name="text_color">#fff</color>
+    <color name="theme_blue">#1e90ff</color>
+    <color name="theme_green">#558500</color>
+    <color name="theme_ltgray">#999999</color>
+    <color name="theme_orange">#ffd700</color>
+    <color name="theme_plgreen">#00e600</color>
+    <color name="theme_red">#ff0000</color>
+    <color name="theme_wa">#ff2e8a06</color>
     <declare-styleable name="ActionBar"><attr name="navigationMode"><enum name="normal" value="0"/><enum name="listMode" value="1"/><enum name="tabMode" value="2"/></attr><attr name="displayOptions"><flag name="none" value="0"/><flag name="useLogo" value="0x1"/><flag name="showHome" value="0x2"/><flag name="homeAsUp" value="0x4"/><flag name="showTitle" value="0x8"/><flag name="showCustom" value="0x10"/><flag name="disableHome" value="0x20"/></attr><attr name="title"/><attr format="string" name="subtitle"/><attr format="reference" name="titleTextStyle"/><attr format="reference" name="subtitleTextStyle"/><attr format="reference" name="icon"/><attr format="reference" name="logo"/><attr format="reference" name="divider"/><attr format="reference" name="background"/><attr format="reference|color" name="backgroundStacked"/><attr format="reference|color" name="backgroundSplit"/><attr format="reference" name="customNavigationLayout"/><attr name="height"/><attr format="reference" name="homeLayout"/><attr format="reference" name="progressBarStyle"/><attr format="reference" name="indeterminateProgressStyle"/><attr format="dimension" name="progressBarPadding"/><attr name="homeAsUpIndicator"/><attr format="dimension" name="itemPadding"/><attr format="boolean" name="hideOnContentScroll"/><attr format="dimension" name="contentInsetStart"/><attr format="dimension" name="contentInsetEnd"/><attr format="dimension" name="contentInsetLeft"/><attr format="dimension" name="contentInsetRight"/><attr format="dimension" name="elevation"/><attr format="reference" name="popupTheme"/></declare-styleable>
     <declare-styleable name="ActionBarLayout"><attr name="android:layout_gravity"/></declare-styleable>
     <declare-styleable name="ActionMenuItemView"><attr name="android:minWidth"/></declare-styleable>
@@ -260,6 +266,41 @@
         <item name="colorAccent">#fff</item>
         <item name="android:textColorPrimary">#fff</item>
         <item name="android:background">@color/ab_bg</item>
+    </style>
+    <style name="AppCompatAlertDialogStyleBlue" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#fff</item>
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="android:background">@color/theme_blue</item>
+    </style>
+    <style name="AppCompatAlertDialogStyleGreen" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#fff</item>
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="android:background">@color/theme_green</item>
+    </style>
+    <style name="AppCompatAlertDialogStyleLtGray" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#fff</item>
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="android:background">@color/theme_ltgray</item>
+    </style>
+    <style name="AppCompatAlertDialogStyleOrange" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#fff</item>
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="android:background">@color/theme_orange</item>
+    </style>
+    <style name="AppCompatAlertDialogStylePlGreen" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#fff</item>
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="android:background">@color/theme_plgreen</item>
+    </style>
+    <style name="AppCompatAlertDialogStyleRed" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#fff</item>
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="android:background">@color/theme_red</item>
+    </style>
+    <style name="AppCompatAlertDialogStyleWA" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#fff</item>
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="android:background">@color/theme_wa</item>
     </style>
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->

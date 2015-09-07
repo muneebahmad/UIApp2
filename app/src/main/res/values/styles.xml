@@ -14,6 +14,48 @@
         <item name="android:background">@color/ab_bg</item>
     </style>
 
+    <style name="AppCompatAlertDialogStyleBlue" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#fff</item>
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="android:background">@color/theme_blue</item>
+    </style>
+
+    <style name="AppCompatAlertDialogStyleOrange" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#fff</item>
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="android:background">@color/theme_orange</item>
+    </style>
+
+    <style name="AppCompatAlertDialogStyleRed" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#fff</item>
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="android:background">@color/theme_red</item>
+    </style>
+
+    <style name="AppCompatAlertDialogStyleLtGray" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#fff</item>
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="android:background">@color/theme_ltgray</item>
+    </style>
+
+    <style name="AppCompatAlertDialogStyleGreen" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#fff</item>
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="android:background">@color/theme_green</item>
+    </style>
+
+    <style name="AppCompatAlertDialogStylePlGreen" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#fff</item>
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="android:background">@color/theme_plgreen</item>
+    </style>
+
+    <style name="AppCompatAlertDialogStyleWA" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#fff</item>
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="android:background">@color/theme_wa</item>
+    </style>
+
     <style name="DPADButts">
         <item name="android:layout_margin">0sp</item>
         <item name="android:background">@drawable/dpad_butt_bg</item>
